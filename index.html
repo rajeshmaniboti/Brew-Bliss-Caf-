@@ -1,0 +1,2734 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brew Bliss Café — A Perfect Cup, A Perfect Moment</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serifDisplay: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            espresso: '#2C1A12',
+            roast: '#4A2C1D',
+            caramel: '#C68B59',
+            cream: '#FAF5EE',
+            latte: '#EFE5D8',
+            cocoaDark: '#1A0F0A'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* =====================================================================
+       CUSTOM KEYFRAME ANIMATIONS & CAFÉ POLISH
+    ====================================================================== */
+    @keyframes floatBean {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-14px) rotate(18deg);
+      }
+    }
+
+    @keyframes floatBeanAlt {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-11px) rotate(-18deg);
+      }
+    }
+
+    @keyframes steamRise {
+      0% {
+        opacity: 0;
+        transform: translateY(8px) scaleX(0.95);
+      }
+      50% {
+        opacity: 0.8;
+        transform: translateY(-9px) scaleX(1.06);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-24px) scaleX(0.9);
+      }
+    }
+
+    @keyframes slideUpToast {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bean-float-1 {
+      animation: floatBean 4.6s ease-in-out infinite;
+    }
+    .bean-float-2 {
+      animation: floatBeanAlt 5.4s ease-in-out infinite 0.5s;
+    }
+    .bean-float-3 {
+      animation: floatBean 6.1s ease-in-out infinite 1s;
+    }
+    .steam-1 {
+      animation: steamRise 3.1s ease-in-out infinite;
+    }
+    .steam-2 {
+      animation: steamRise 3.1s ease-in-out infinite 1s;
+    }
+    .steam-3 {
+      animation: steamRise 3.1s ease-in-out infinite 2s;
+    }
+    .toast-enter {
+      animation: slideUpToast 0.28s ease-out forwards;
+    }
+
+    /* Hide scrollbar on horizontal category strip while keeping scroll usable */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(74, 44, 29, 0.08);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C68B59;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4A2C1D;
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-espresso dark:bg-cocoaDark dark:text-cream transition-colors duration-300 antialiased selection:bg-caramel selection:text-espresso">
+
+  <!-- ======================================================================
+       1. SPECIAL DAILY OFFER BANNER
+  ======================================================================= -->
+  <div class="bg-gradient-to-r from-espresso via-roast to-espresso text-cream text-xs sm:text-sm py-2.5 px-4 text-center border-b border-caramel/30">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
+      <span class="font-medium">
+        ✨ Daily Barista Special: <strong>20% Off All Orders</strong> with Code
+        <span class="mx-1 px-2.5 py-0.5 rounded-full bg-caramel text-espresso font-bold tracking-wider">BLISS20</span>
+      </span>
+      <span class="hidden md:inline text-caramel">•</span>
+      <span class="hidden md:inline text-latte/90">
+        Free French Butter Croissant on Dine-In Orders Above $24
+      </span>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       2. STICKY NAVIGATION BAR
+  ======================================================================= -->
+  <header class="sticky top-0 z-40 backdrop-blur-lg bg-cream/90 dark:bg-cocoaDark/90 border-b border-latte dark:border-roast/70 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group shrink-0">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-roast to-espresso border border-caramel/50 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6 text-caramel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+            <line x1="6" x2="6" y1="2" y2="4" />
+            <line x1="10" x2="10" y1="2" y2="4" />
+            <line x1="14" x2="14" y1="2" y2="4" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-serifDisplay text-xl sm:text-2xl font-bold tracking-tight block leading-none">
+            Brew Bliss <span class="text-caramel">Café</span>
+          </span>
+          <span class="text-[11px] uppercase tracking-[0.2em] text-roast/75 dark:text-latte/75">
+            Artisan Coffee House
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+        <a href="#about" class="hover:text-caramel transition-colors">About</a>
+        <a href="#specials" class="hover:text-caramel transition-colors">Specials</a>
+        <a href="#menu" class="hover:text-caramel transition-colors">Menu</a>
+        <a href="#ai-barista" class="hover:text-caramel transition-colors">AI Barista</a>
+        <a href="#reservations" class="hover:text-caramel transition-colors">Reservations</a>
+        <a href="#contact" class="hover:text-caramel transition-colors">Contact</a>
+      </nav>
+
+      <!-- Utility Controls -->
+      <div class="flex items-center gap-2">
+        <!-- Loyalty Points Pill -->
+        <a href="#rewards" title="View Loyalty Points & Rewards"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-latte dark:bg-espresso border border-caramel/40 text-roast dark:text-caramel text-xs font-bold hover:scale-105 transition-transform">
+          <span>🏆</span>
+          <span id="navLoyaltyPoints">150 pts</span>
+        </a>
+
+        <!-- Ambient Café Music Toggle -->
+        <button id="musicToggleBtn" type="button" onclick="toggleCafeMusic()"
+          title="Play or Pause Relaxing Café Music"
+          class="p-2.5 rounded-full border border-latte dark:border-roast bg-white dark:bg-espresso text-roast dark:text-cream hover:border-caramel transition-all">
+          <span id="musicBtnIcon" class="text-sm leading-none">🎵</span>
+        </button>
+
+        <!-- Dark / Light Coffee Mode Toggle -->
+        <button id="themeToggleBtn" type="button" onclick="toggleThemeMode()"
+          title="Switch between Dark Coffee Mode and Light Cream Mode"
+          class="p-2.5 rounded-full border border-latte dark:border-roast bg-white dark:bg-espresso text-roast dark:text-caramel hover:border-caramel transition-all">
+          <span id="themeBtnIcon" class="text-sm leading-none">🌙</span>
+        </button>
+
+        <!-- Cart Drawer Button -->
+        <button type="button" onclick="openCartDrawer()"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-roast hover:bg-espresso text-cream text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all">
+          <span>🛍️</span>
+          <span class="hidden sm:inline">Order</span>
+          <span id="cartCountBadge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-caramel text-espresso text-xs font-extrabold">
+            0
+          </span>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button type="button" onclick="toggleMobileMenu()" aria-label="Toggle Mobile Navigation"
+          class="lg:hidden p-2.5 rounded-xl border border-latte dark:border-roast bg-white dark:bg-espresso">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Dropdown -->
+    <div id="mobileNavMenu" class="hidden lg:hidden border-t border-latte dark:border-roast bg-cream dark:bg-cocoaDark px-4 py-4 space-y-2 text-sm font-medium">
+      <a href="#about" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">About Our Café</a>
+      <a href="#specials" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">Signature Specials</a>
+      <a href="#menu" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">Full Menu</a>
+      <a href="#ai-barista" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">AI Recommendation & Daily Quiz</a>
+      <a href="#rewards" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">Loyalty Rewards</a>
+      <a href="#reservations" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">Table Reservation & Reviews</a>
+      <a href="#contact" onclick="closeMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-caramel/15">Hours, Map & Newsletter</a>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       FLOATING CAFÉ MUSIC CONTROL BAR (SHOWN WHEN PLAYING)
+  ======================================================================= -->
+  <div id="musicPlayerBar" class="hidden fixed bottom-5 left-4 sm:left-6 z-40 items-center gap-3 px-4 py-3 rounded-2xl bg-espresso/95 text-cream border border-caramel/50 shadow-2xl backdrop-blur-md">
+    <span class="w-8 h-8 rounded-full bg-caramel/20 text-caramel flex items-center justify-center animate-pulse">🎶</span>
+    <div class="text-xs">
+      <p class="font-bold text-cream">Brew Bliss Lounge Radio</p>
+      <p class="text-caramel">Warm Rhodes & Café Ambience</p>
+    </div>
+    <input id="musicVolumeSlider" type="range" min="0.05" max="1" step="0.05" value="0.4"
+      oninput="updateMusicVolume(this.value)" aria-label="Music Volume"
+      class="w-20 accent-caramel cursor-pointer" />
+    <button type="button" onclick="toggleCafeMusic()" class="text-xs px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20">
+      Pause
+    </button>
+  </div>
+
+  <!-- ======================================================================
+       FLOATING TOAST NOTIFICATION
+  ======================================================================= -->
+  <div id="toastBanner" class="hidden fixed bottom-5 right-4 sm:right-6 z-50 toast-enter items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-espresso text-cream border border-caramel shadow-2xl max-w-sm">
+    <span class="text-caramel text-base">☕</span>
+    <p id="toastText" class="text-xs sm:text-sm font-medium"></p>
+  </div>
+
+  <!-- ======================================================================
+       3. HOMEPAGE / HERO WELCOME SECTION
+  ======================================================================= -->
+  <section id="home" class="relative min-h-[88vh] flex items-center overflow-hidden">
+    <!-- Full-Screen Café Background Image -->
+    <img
+      src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=85"
+      alt="Warm cozy Brew Bliss Café interior with coffee bar"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80';"
+      class="absolute inset-0 w-full h-full object-cover object-center scale-105"
+    />
+    <!-- Rich Coffee Brown & Dark Chocolate Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-cocoaDark/95 via-espresso/85 to-espresso/55"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Copy & CTAs -->
+        <div class="lg:col-span-7 text-cream space-y-6">
+          <!-- Live Open Now / Closed Now Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-caramel/20 border border-caramel/50 text-latte text-xs sm:text-sm font-medium backdrop-blur-sm">
+            <span id="heroOpenDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span id="heroOpenText">Checking opening hours...</span>
+          </div>
+
+          <h1 class="font-serifDisplay text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight text-cream">
+            A Perfect Cup,
+            <span class="text-caramel italic block sm:inline">A Perfect Moment.</span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-latte/90 max-w-2xl leading-relaxed">
+            Discover the magic of freshly brewed coffee and delicious moments.
+            Small-batch specialty Arabica roasts, velvety micro-foam, and warm
+            patisserie baked fresh every morning.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#menu"
+              class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-caramel hover:bg-[#b77c4a] text-espresso font-bold text-sm sm:text-base shadow-xl shadow-caramel/25 transition-all hover:-translate-y-0.5">
+              <span>Explore Our Menu</span>
+              <span>→</span>
+            </a>
+            <button type="button" onclick="openCartDrawer()"
+              class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-cream border border-cream/35 backdrop-blur-md font-semibold text-sm sm:text-base transition-all hover:-translate-y-0.5">
+              <span>Order Now</span>
+            </button>
+          </div>
+
+          <!-- Café Metrics -->
+          <div class="grid grid-cols-3 gap-4 pt-6 max-w-lg border-t border-white/15">
+            <div>
+              <p class="font-serifDisplay text-2xl sm:text-3xl font-bold text-caramel">100%</p>
+              <p class="text-xs sm:text-sm text-latte/80">Single-Origin Arabica</p>
+            </div>
+            <div>
+              <p id="heroAvgRating" class="font-serifDisplay text-2xl sm:text-3xl font-bold text-caramel">4.9 ★</p>
+              <p class="text-xs sm:text-sm text-latte/80">Guest Rating</p>
+            </div>
+            <div>
+              <p class="font-serifDisplay text-2xl sm:text-3xl font-bold text-caramel">Daily</p>
+              <p class="text-xs sm:text-sm text-latte/80">Freshly Roasted</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated Steaming Coffee Cup & Floating Coffee Beans -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center select-none">
+            <!-- Soft Caramel Glow -->
+            <div class="absolute inset-5 rounded-full bg-caramel/30 blur-2xl"></div>
+
+            <!-- Floating Coffee Bean 1 -->
+            <div class="bean-float-1 absolute top-3 left-6 z-20">
+              <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                <ellipse cx="20" cy="20" rx="14" ry="9.5" transform="rotate(-30 20 20)" fill="#4A2C1D" stroke="#C68B59" stroke-width="1.6" />
+                <path d="M10.5 25.5C17 21 23 19 29.5 14.5" stroke="#FAF5EE" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <!-- Floating Coffee Bean 2 -->
+            <div class="bean-float-2 absolute top-7 right-5 z-20">
+              <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+                <ellipse cx="20" cy="20" rx="13" ry="9" transform="rotate(28 20 20)" fill="#2C1A12" stroke="#C68B59" stroke-width="1.6" />
+                <path d="M11 15C18 19 22 21 29 25" stroke="#C68B59" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <!-- Floating Coffee Bean 3 -->
+            <div class="bean-float-3 absolute bottom-7 left-5 z-20">
+              <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                <ellipse cx="20" cy="20" rx="13" ry="9" transform="rotate(42 20 20)" fill="#4A2C1D" stroke="#EFE5D8" stroke-width="1.5" />
+                <path d="M12 13C18 18 22 22 28 27" stroke="#FAF5EE" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <!-- Steaming Cup Medallion -->
+            <div class="relative z-10 w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-espresso/85 backdrop-blur-md border border-caramel/45 shadow-2xl flex flex-col items-center justify-center p-4">
+              <svg class="w-36 h-36 sm:w-44 sm:h-44 overflow-visible" viewBox="0 0 180 180" fill="none">
+                <path class="steam-1" d="M68 58C63 48 73 40 68 30" stroke="#FAF5EE" stroke-width="3" stroke-linecap="round" />
+                <path class="steam-2" d="M90 54C85 42 95 34 90 22" stroke="#C68B59" stroke-width="3.2" stroke-linecap="round" />
+                <path class="steam-3" d="M112 58C107 48 117 40 112 30" stroke="#FAF5EE" stroke-width="3" stroke-linecap="round" />
+
+                <ellipse cx="90" cy="142" rx="62" ry="11" fill="#C68B59" />
+                <ellipse cx="90" cy="140" rx="54" ry="8" fill="#EFE5D8" />
+
+                <path d="M132 82H142C151.941 82 160 90.0589 160 100C160 109.941 151.941 118 142 118H130"
+                  stroke="#FAF5EE" stroke-width="8" stroke-linecap="round" />
+
+                <path d="M44 74H136L128 122C125.8 133.5 115.7 141 104 141H76C64.3 141 54.2 133.5 52 122L44 74Z"
+                  fill="url(#heroCupGrad)" />
+
+                <ellipse cx="90" cy="74" rx="46" ry="10" fill="#4A2C1D" />
+                <ellipse cx="90" cy="74" rx="41" ry="7.5" fill="#C68B59" />
+
+                <path d="M90 78C90 78 81 73 81 69.5C81 67.5 82.8 66.5 84.8 66.5C86.6 66.5 88.5 67.7 90 69.3C91.5 67.7 93.4 66.5 95.2 66.5C97.2 66.5 99 67.5 99 69.5C99 73 90 78 90 78Z"
+                  fill="#FAF5EE" />
+
+                <defs>
+                  <linearGradient id="heroCupGrad" x1="44" y1="74" x2="136" y2="141" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#FAF5EE" />
+                    <stop offset="1" stopColor="#DFCBB5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span class="text-[11px] uppercase tracking-[0.22em] text-caramel font-semibold -mt-2">
+                Freshly Roasted
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       4. ABOUT OUR CAFÉ SECTION
+  ======================================================================= -->
+  <section id="about" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <!-- Café Interior & Coffee-Making Photography -->
+      <div class="lg:col-span-6">
+        <div class="grid grid-cols-12 gap-4 items-center">
+          <div class="col-span-7">
+            <img
+              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80"
+              alt="Sunlit Brew Bliss Café seating and warm wooden interior"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80';"
+              class="rounded-3xl h-80 sm:h-96 w-full object-cover shadow-2xl"
+            />
+          </div>
+          <div class="col-span-5 space-y-4">
+            <img
+              src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=80"
+              alt="Barista pouring latte art at Brew Bliss Café"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=700&q=80';"
+              class="rounded-3xl h-44 sm:h-52 w-full object-cover shadow-xl"
+            />
+            <div class="p-5 rounded-3xl bg-roast text-cream shadow-xl border border-caramel/30">
+              <p class="font-serifDisplay text-2xl sm:text-3xl font-bold text-caramel">
+                Craft & Care
+              </p>
+              <p class="text-xs sm:text-sm text-latte/90 mt-1">
+                Direct-trade beans, precision extraction & warm hospitality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Café Story & Why Customers Love Us -->
+      <div class="lg:col-span-6 space-y-6">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+          Our Story & Philosophy
+        </span>
+        <h2 class="font-serifDisplay text-3xl sm:text-5xl font-bold leading-tight">
+          A Cozy Haven Built Around Exceptional Coffee
+        </h2>
+        <p class="text-base sm:text-lg text-roast/80 dark:text-latte/85 leading-relaxed">
+          At <strong>Brew Bliss Café</strong>, every cup begins with ethically sourced
+          highland Arabica beans, rich single-origin chocolate, and creamy farm dairy.
+          Our baristas dial in every espresso shot for balanced sweetness and aromatic depth.
+        </p>
+        <p class="text-sm sm:text-base text-roast/75 dark:text-latte/75 leading-relaxed">
+          Paired with warm lighting, handcrafted cakes, and savory paninis, our café is
+          designed for unhurried mornings, creative afternoons, and memorable catch-ups.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 pt-3">
+          <div class="p-4 rounded-2xl bg-white dark:bg-espresso border border-latte dark:border-roast shadow-sm">
+            <h3 class="font-bold text-sm sm:text-base text-caramel">🌱 Fresh Coffee Beans</h3>
+            <p className="text-xs text-roast/75 dark:text-latte/75 mt-1 leading-relaxed">
+              Small-batch roasted micro-lots with vibrant tasting notes and rich crema.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white dark:bg-espresso border border-latte dark:border-roast shadow-sm">
+            <h3 class="font-bold text-sm sm:text-base text-caramel">👩‍🍳 Expert Baristas</h3>
+            <p className="text-xs text-roast/75 dark:text-latte/75 mt-1 leading-relaxed">
+              Skilled coffee artisans crafting silky latte art and balanced cold brews.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white dark:bg-espresso border border-latte dark:border-roast shadow-sm">
+            <h3 className="font-bold text-sm sm:text-base text-caramel">🍓 Quality Ingredients</h3>
+            <p className="text-xs text-roast/75 dark:text-latte/75 mt-1 leading-relaxed">
+              Real vanilla beans, Belgian cocoa, fresh seasonal fruit, and artisan breads.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white dark:bg-espresso border border-latte dark:border-roast shadow-sm">
+            <h3 className="font-bold text-sm sm:text-base text-caramel">💛 Welcoming Vibe</h3>
+            <p className="text-xs text-roast/75 dark:text-latte/75 mt-1 leading-relaxed">
+              Comfortable seating, gentle café music, and attentive service every visit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       5. SIGNATURE SPECIAL ITEMS SECTION
+  ======================================================================= -->
+  <section id="specials" class="py-20 px-4 sm:px-6 lg:px-8 bg-latte/65 dark:bg-espresso/60 border-y border-latte dark:border-roast">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+            House Favorites
+          </span>
+          <h2 class="font-serifDisplay text-3xl sm:text-5xl font-bold mt-2">
+            Signature Special Items
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-roast/80 dark:text-latte/80 max-w-md">
+          Guest-loved classics and limited seasonal creations ready to customize or add
+          straight to your bag.
+        </p>
+      </div>
+
+      <div id="specialsGrid" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <!-- Populated dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       6. INTERACTIVE FOOD & DRINKS MENU SECTION
+  ======================================================================= -->
+  <section id="menu" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+        Freshly Crafted Daily
+      </span>
+      <h2 class="font-serifDisplay text-3xl sm:text-5xl font-bold mt-2">
+        Food & Drinks Menu
+      </h2>
+      <p class="text-sm sm:text-base text-roast/80 dark:text-latte/80 mt-3">
+        Browse Hot Coffee, Cold Coffee, Milkshakes, Fresh Juices, Cakes and Desserts,
+        and Sandwiches and Snacks.
+      </p>
+    </div>
+
+    <!-- Search & Vegetarian Filter Row -->
+    <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-7">
+      <div class="relative flex-1 max-w-md">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-caramel">🔍</span>
+        <input id="menuSearchInput" type="text" oninput="renderMenu()"
+          placeholder="Search drinks, cakes, sandwiches..."
+          class="w-full pl-11 pr-10 py-3.5 rounded-full bg-white dark:bg-espresso border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel" />
+        <button type="button" onclick="clearMenuSearch()" aria-label="Clear search"
+          class="hidden id='clearSearchBtn' absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-caramel font-bold">
+          ✕
+        </button>
+      </div>
+
+      <button id="vegFilterBtn" type="button" onclick="toggleVegFilter()"
+        class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-latte dark:border-roast bg-white dark:bg-espresso text-xs sm:text-sm font-semibold hover:border-caramel transition-all">
+        <span class="w-3.5 h-3.5 rounded-[3px] border-2 border-emerald-600 flex items-center justify-center">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+        </span>
+        <span>Vegetarian Only</span>
+      </button>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div id="categoryTabs" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-4 mb-8">
+      <!-- Populated dynamically by JavaScript -->
+    </div>
+
+    <!-- Menu Cards Grid -->
+    <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      <!-- Populated dynamically by JavaScript -->
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       7. LIVE ORDER PROGRESS TRACKER (SHOWN WHEN AN ORDER IS PLACED)
+  ======================================================================= -->
+  <section id="orderTrackerSection" class="hidden py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div class="rounded-3xl bg-gradient-to-br from-espresso to-roast text-cream p-6 sm:p-10 border border-caramel/50 shadow-2xl">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/15">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-caramel/20 text-caramel text-xs font-bold uppercase tracking-wider">
+            Live Order Tracker
+          </span>
+          <h3 id="trackerOrderTitle" class="font-serifDisplay text-2xl sm:text-3xl font-bold mt-2">
+            Order #BB-1042
+          </h3>
+          <p id="trackerOrderMeta" class="text-xs sm:text-sm text-latte/80 mt-1"></p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="advanceOrderBtn" type="button" onclick="advanceOrderStage()"
+            class="px-4 py-2.5 rounded-full bg-caramel hover:bg-[#b77c4a] text-espresso text-xs font-bold transition-transform hover:scale-105">
+            Next Stage →
+          </button>
+          <button type="button" onclick="dismissActiveOrder()"
+            class="px-3.5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium">
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <div id="trackerStepsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-7">
+        <!-- Populated dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       8. AI COFFEE RECOMMENDATION & DAILY COFFEE QUIZ
+  ======================================================================= -->
+  <section id="ai-barista" class="py-20 px-4 sm:px-6 lg:px-8 bg-latte/65 dark:bg-espresso/60 border-y border-latte dark:border-roast">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+          Smart Café Lounge
+        </span>
+        <h2 class="font-serifDisplay text-3xl sm:text-5xl font-bold mt-2">
+          AI Coffee Match & Daily Quiz
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- A. AI COFFEE RECOMMENDATION -->
+        <div class="rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast p-6 sm:p-8 shadow-xl flex flex-col justify-between">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-caramel/20 text-caramel text-xs font-bold mb-4">
+              <span>🤖</span>
+              <span>AI Taste Recommendation</span>
+            </span>
+            <h3 class="font-serifDisplay text-2xl sm:text-3xl font-bold">
+              Find Your Ideal Drink
+            </h3>
+            <p class="text-xs sm:text-sm text-roast/75 dark:text-latte/75 mt-1.5">
+              Choose how you like your cup — sweet, strong, creamy, or refreshing — and
+              we&apos;ll recommend the best match.
+            </p>
+
+            <div class="mt-6 space-y-4">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider mb-2">Flavor Preference</p>
+                <div id="aiFlavorButtons" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <button type="button" data-flavor="sweet" onclick="setAiPreference('flavor', 'sweet')"
+                    class="ai-flavor-btn py-2.5 px-3 rounded-xl border text-xs font-bold transition-all">
+                    🍯 Sweet
+                  </button>
+                  <button type="button" data-flavor="strong" onclick="setAiPreference('flavor', 'strong')"
+                    class="ai-flavor-btn py-2.5 px-3 rounded-xl border text-xs font-bold transition-all">
+                    ⚡ Strong
+                  </button>
+                  <button type="button" data-flavor="creamy" onclick="setAiPreference('flavor', 'creamy')"
+                    class="ai-flavor-btn py-2.5 px-3 rounded-xl border text-xs font-bold transition-all">
+                    🥛 Creamy
+                  </button>
+                  <button type="button" data-flavor="refreshing" onclick="setAiPreference('flavor', 'refreshing')"
+                    class="ai-flavor-btn py-2.5 px-3 rounded-xl border text-xs font-bold transition-all">
+                    🍊 Refreshing
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider mb-2">Temperature Mood</p>
+                <div class="grid grid-cols-2 gap-2.5">
+                  <button type="button" data-temp="hot" onclick="setAiPreference('temp', 'hot')"
+                    class="ai-temp-btn py-2.5 px-4 rounded-xl border text-xs font-bold transition-all">
+                    ☕ Warm / Hot
+                  </button>
+                  <button type="button" data-temp="iced" onclick="setAiPreference('temp', 'iced')"
+                    class="ai-temp-btn py-2.5 px-4 rounded-xl border text-xs font-bold transition-all">
+                    🧊 Iced / Chilled
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Item Output Card -->
+          <div id="aiRecommendationCard" class="mt-6 p-4 rounded-2xl bg-cream dark:bg-cocoaDark border border-caramel/40 flex flex-col sm:flex-row items-center gap-4">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- E. DAILY COFFEE QUIZ -->
+        <div class="rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast p-6 sm:p-8 shadow-xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-caramel/20 text-caramel text-xs font-bold">
+                <span>🧠</span>
+                <span>Daily Coffee Quiz</span>
+              </span>
+              <span class="text-xs font-bold text-caramel">+25 Pts per Right Answer</span>
+            </div>
+
+            <div id="quizContainer">
+              <!-- Populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       9. COFFEE LOYALTY REWARDS SECTION
+  ======================================================================= -->
+  <section id="rewards" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="rounded-3xl bg-gradient-to-r from-espresso via-roast to-espresso text-cream p-7 sm:p-12 border border-caramel/40 shadow-2xl">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-white/15">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+            Bliss Points Club
+          </span>
+          <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold mt-2">
+            Coffee Loyalty Rewards
+          </h2>
+          <p class="text-sm text-latte/85 mt-1">
+            Earn <strong>10 points per $1</strong> ordered and unlock instant discounts or
+            free beverages.
+          </p>
+        </div>
+
+        <div class="px-6 py-4 rounded-2xl bg-black/30 border border-caramel/50 text-center shrink-0">
+          <span class="text-xs uppercase tracking-wider text-caramel block">Your Balance</span>
+          <span id="loyaltyBalanceLarge" class="font-serifDisplay text-4xl font-bold text-cream">
+            150 pts
+          </span>
+        </div>
+      </div>
+
+      <div id="rewardsGrid" class="grid md:grid-cols-3 gap-6 pt-8">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       10. TABLE RESERVATION & CUSTOMER REVIEWS SECTION
+  ======================================================================= -->
+  <section id="reservations" class="py-20 px-4 sm:px-6 lg:px-8 bg-latte/65 dark:bg-espresso/60 border-y border-latte dark:border-roast">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
+      <!-- Table Reservation Form -->
+      <div class="lg:col-span-6">
+        <div class="rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast p-6 sm:p-9 shadow-xl">
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+            Reserve a Spot
+          </span>
+          <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold mt-2">
+            Table Reservation
+          </h2>
+          <p class="text-xs sm:text-sm text-roast/75 dark:text-latte/75 mt-2">
+            Pick your date, time, party size, and seating preference.
+          </p>
+
+          <form id="reservationForm" onsubmit="handleReservationSubmit(event)" class="mt-6 space-y-4" novalidate>
+            <div id="reservationError" class="hidden p-3 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-500 text-xs font-medium"></div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="resName" class="text-xs font-bold block mb-1.5">Full Name *</label>
+                <input id="resName" type="text" placeholder="Hannah Brooks"
+                  class="w-full px-4 py-3 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel" />
+              </div>
+              <div>
+                <label for="resGuests" class="text-xs font-bold block mb-1.5">Number of Guests</label>
+                <select id="resGuests"
+                  class="w-full px-4 py-3 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel">
+                  <option>1 Guest</option>
+                  <option selected>2 Guests</option>
+                  <option>3 Guests</option>
+                  <option>4 Guests</option>
+                  <option>6 Guests</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="resDate" class="text-xs font-bold block mb-1.5">Date *</label>
+                <input id="resDate" type="date"
+                  class="w-full px-4 py-3 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel" />
+              </div>
+              <div>
+                <label for="resTime" class="text-xs font-bold block mb-1.5">Time *</label>
+                <input id="resTime" type="time" value="10:30"
+                  class="w-full px-4 py-3 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel" />
+              </div>
+            </div>
+
+            <div>
+              <label for="resSeating" class="text-xs font-bold block mb-1.5">Preferred Seating</label>
+              <select id="resSeating"
+                class="w-full px-4 py-3 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel">
+                <option>Window Booth (Natural Light)</option>
+                <option>Cozy Velvet Lounge</option>
+                <option>Garden Patio</option>
+                <option>Espresso Bar Counter</option>
+              </select>
+            </div>
+
+            <button type="submit"
+              class="w-full py-3.5 rounded-full bg-roast hover:bg-espresso text-cream font-bold text-sm shadow-lg transition-all">
+              Reserve Table
+            </button>
+          </form>
+
+          <div id="reservationConfirmation" class="hidden mt-6 p-5 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 space-y-2">
+            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400">✓ Table Reserved!</p>
+            <p id="reservationSummaryText" class="text-xs sm:text-sm leading-relaxed"></p>
+            <button type="button" onclick="resetReservationForm()"
+              class="mt-2 px-4 py-1.5 rounded-full bg-caramel text-espresso text-xs font-bold">
+              Book Another Table
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Reviews Slider + Add Review Form -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+              Testimonials
+            </span>
+            <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold mt-1">
+              Customer Reviews
+            </h2>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-full bg-caramel/20 text-caramel text-xs sm:text-sm font-bold">
+            <span id="avgRatingBadge">4.9 ★</span> (<span id="reviewCountBadge">3</span>)
+          </div>
+        </div>
+
+        <!-- Active Slide Card -->
+        <div id="activeReviewCard" class="rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast p-6 sm:p-8 shadow-xl">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+
+        <!-- Submit New Review Form -->
+        <form id="reviewForm" onsubmit="handleReviewSubmit(event)" class="rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast p-6 shadow-md space-y-3" novalidate>
+          <h3 class="font-bold text-sm sm:text-base">Write a Review</h3>
+          <div id="reviewError" class="hidden text-xs text-rose-500 font-medium"></div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <input id="reviewerName" type="text" placeholder="Your Name"
+              class="px-4 py-2.5 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel" />
+            <select id="reviewerRating"
+              class="px-4 py-2.5 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel">
+              <option value="5">★★★★★ (5 Stars)</option>
+              <option value="4">★★★★☆ (4 Stars)</option>
+              <option value="3">★★★☆☆ (3 Stars)</option>
+            </select>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <input id="reviewerComment" type="text" placeholder="Share what you loved..."
+              class="flex-1 px-4 py-2.5 rounded-xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast text-sm focus:outline-none focus:ring-2 focus:ring-caramel" />
+            <button type="submit"
+              class="px-6 py-2.5 rounded-xl bg-caramel hover:bg-[#b77c4a] text-espresso font-bold text-xs sm:text-sm shrink-0">
+              Submit Review
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       11. OPENING HOURS, LOCATION MAP & NEWSLETTER SECTION
+  ======================================================================= -->
+  <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      <!-- Opening Hours & Contact Info -->
+      <div class="lg:col-span-5 rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast p-7 sm:p-9 shadow-xl flex flex-col justify-between">
+        <div class="space-y-6">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-bold uppercase tracking-[0.25em] text-caramel">
+              Visit Us
+            </span>
+            <span id="contactOpenStatusPill" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+              Open Now
+            </span>
+          </div>
+
+          <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold">
+            Opening Hours & Location
+          </h2>
+
+          <div class="p-5 rounded-2xl bg-cream dark:bg-cocoaDark border border-latte dark:border-roast space-y-2.5 text-sm">
+            <p class="font-bold text-caramel">🕒 Weekly Schedule</p>
+            <div class="flex justify-between">
+              <span class="text-roast/75 dark:text-latte/75">Monday – Friday</span>
+              <span class="font-semibold">8:00 AM – 10:00 PM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-roast/75 dark:text-latte/75">Saturday – Sunday</span>
+              <span class="font-semibold">9:00 AM – 11:00 PM</span>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-sm">
+            <p>📍 <strong>Address:</strong> 742 Roastery Lane, Coffee District, Seattle, WA 98101</p>
+            <p>📞 <strong>Phone:</strong> +1 (206) 555-0194</p>
+            <p>✉️ <strong>Email:</strong> hello@brewblisscafe.com</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-6 mt-6 border-t border-latte dark:border-roast">
+          <a href="https://www.google.com/maps/search/?api=1&query=742+Roastery+Lane+Seattle+WA"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-roast hover:bg-espresso text-cream text-xs font-bold transition-colors">
+            <span>🗺️</span>
+            <span>Get Directions</span>
+          </a>
+          <a href="https://wa.me/12065550194?text=Hello%20Brew%20Bliss%20Caf%C3%A9!"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-colors">
+            <span>💬</span>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Map + Newsletter Subscription -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="rounded-3xl overflow-hidden border border-latte dark:border-roast shadow-xl h-72 sm:h-80">
+          <iframe
+            title="Brew Bliss Café Location Map"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.345%2C47.605%2C-122.325%2C47.618&layer=mapnik&marker=47.6115%2C-122.335"
+            class="w-full h-full border-0"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <!-- Newsletter Card -->
+        <div class="rounded-3xl bg-espresso text-cream p-7 sm:p-8 border border-caramel/40 shadow-xl">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="max-w-md">
+              <span class="text-xs font-bold uppercase tracking-[0.2em] text-caramel">
+                Newsletter & Offers
+              </span>
+              <h3 class="font-serifDisplay text-2xl sm:text-3xl font-bold mt-1">
+                Enjoy 15% Welcome Discount
+              </h3>
+              <p class="text-xs sm:text-sm text-latte/80 mt-1">
+                Get seasonal roast alerts, bakery launches, and code <strong>WELCOME15</strong>.
+              </p>
+            </div>
+
+            <div class="flex-1 max-w-md">
+              <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)" class="space-y-2" novalidate>
+                <div class="flex gap-2">
+                  <input id="newsletterEmail" type="email" placeholder="you@example.com"
+                    class="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-sm text-cream placeholder-latte/50 focus:outline-none focus:border-caramel" />
+                  <button type="submit"
+                    class="px-6 py-3 rounded-full bg-caramel hover:bg-[#b77c4a] text-espresso font-bold text-xs sm:text-sm shrink-0 transition-transform hover:scale-105">
+                    Subscribe
+                  </button>
+                </div>
+                <p id="newsletterMessage" class="hidden text-xs pl-3 font-medium"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       12. FOOTER
+  ======================================================================= -->
+  <footer class="bg-cocoaDark text-latte border-t border-roast">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Brand & Description -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-roast border border-caramel/40 flex items-center justify-center text-caramel font-bold">
+              ☕
+            </div>
+            <span class="font-serifDisplay text-2xl font-bold text-cream">
+              Brew Bliss <span class="text-caramel">Café</span>
+            </span>
+          </div>
+          <p class="text-sm text-latte/75 leading-relaxed">
+            A warm neighborhood coffee house serving specialty brews, indulgent desserts,
+            and wholesome café bites every day.
+          </p>
+          <div class="flex items-center gap-2.5 pt-1">
+            <a href="#home" aria-label="Instagram" class="w-9 h-9 rounded-full bg-roast/70 hover:bg-caramel hover:text-espresso flex items-center justify-center text-xs font-bold transition-colors">IG</a>
+            <a href="#home" aria-label="Facebook" class="w-9 h-9 rounded-full bg-roast/70 hover:bg-caramel hover:text-espresso flex items-center justify-center text-xs font-bold transition-colors">FB</a>
+            <a href="#home" aria-label="X / Twitter" class="w-9 h-9 rounded-full bg-roast/70 hover:bg-caramel hover:text-espresso flex items-center justify-center text-xs font-bold transition-colors">X</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-widest text-caramel mb-4">
+            Quick Links
+          </h4>
+          <ul class="space-y-2.5 text-sm text-latte/80">
+            <li><a href="#home" class="hover:text-caramel">Home</a></li>
+            <li><a href="#about" class="hover:text-caramel">About Us</a></li>
+            <li><a href="#ai-barista" class="hover:text-caramel">AI Recommendation</a></li>
+            <li><a href="#rewards" class="hover:text-caramel">Loyalty Rewards</a></li>
+            <li><a href="#reservations" class="hover:text-caramel">Table Reservation</a></li>
+          </ul>
+        </div>
+
+        <!-- Menu Links -->
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-widest text-caramel mb-4">
+            Menu Categories
+          </h4>
+          <ul id="footerMenuLinks" class="space-y-2.5 text-sm text-latte/80">
+            <!-- Populated dynamically by JavaScript -->
+          </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-widest text-caramel mb-4">
+            Contact Info
+          </h4>
+          <ul class="space-y-2.5 text-sm text-latte/80">
+            <li>742 Roastery Lane, Seattle, WA</li>
+            <li>Mon–Fri: 8:00 AM – 10:00 PM</li>
+            <li>Sat–Sun: 9:00 AM – 11:00 PM</li>
+            <li>+1 (206) 555-0194</li>
+            <li>hello@brewblisscafe.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-latte/65">
+        <p>© <span id="footerYear">2026</span> Brew Bliss Café. All rights reserved.</p>
+        <p>A Perfect Cup, A Perfect Moment.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       13. DRINK CUSTOMIZATION MODAL
+  ======================================================================= -->
+  <div id="customizeModal" class="hidden fixed inset-0 z-50 items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="w-full max-w-lg rounded-3xl bg-cream dark:bg-espresso text-espresso dark:text-cream border border-caramel/40 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-4 pb-4 border-b border-latte dark:border-roast">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-caramel">
+            Customize Your Drink
+          </span>
+          <h3 id="customModalTitle" class="font-serifDisplay text-2xl sm:text-3xl font-bold mt-0.5">
+            Caramel Macchiato
+          </h3>
+        </div>
+        <button type="button" onclick="closeCustomizeModal()" aria-label="Close modal"
+          class="p-2 rounded-full hover:bg-caramel/20 font-bold">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-5 py-5">
+        <!-- Cup Size -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider mb-2">Cup Size</p>
+          <div class="grid grid-cols-3 gap-2.5">
+            <button type="button" data-size="Small" onclick="selectCustomSize('Small')"
+              class="custom-size-btn p-3 rounded-xl border text-center text-xs font-bold transition-all">
+              Small <span class="block text-[11px] font-normal text-caramel">-$0.40</span>
+            </button>
+            <button type="button" data-size="Regular" onclick="selectCustomSize('Regular')"
+              class="custom-size-btn p-3 rounded-xl border text-center text-xs font-bold transition-all">
+              Regular <span class="block text-[11px] font-normal text-caramel">Standard</span>
+            </button>
+            <button type="button" data-size="Large" onclick="selectCustomSize('Large')"
+              class="custom-size-btn p-3 rounded-xl border text-center text-xs font-bold transition-all">
+              Large <span class="block text-[11px] font-normal text-caramel">+$0.85</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Milk Type -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider mb-2">Milk Type (+$0.65 non-dairy)</p>
+          <div id="customMilkGroup" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button type="button" data-milk="Whole Milk" onclick="selectCustomMilk('Whole Milk')"
+              class="custom-milk-btn py-2.5 px-2 rounded-xl border text-xs font-semibold">
+              Whole Milk
+            </button>
+            <button type="button" data-milk="Oat Milk" onclick="selectCustomMilk('Oat Milk')"
+              class="custom-milk-btn py-2.5 px-2 rounded-xl border text-xs font-semibold">
+              Oat Milk
+            </button>
+            <button type="button" data-milk="Almond Milk" onclick="selectCustomMilk('Almond Milk')"
+              class="custom-milk-btn py-2.5 px-2 rounded-xl border text-xs font-semibold">
+              Almond Milk
+            </button>
+            <button type="button" data-milk="Soy Milk" onclick="selectCustomMilk('Soy Milk')"
+              class="custom-milk-btn py-2.5 px-2 rounded-xl border text-xs font-semibold">
+              Soy Milk
+            </button>
+          </div>
+        </div>
+
+        <!-- Sugar Level -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider mb-2">Sugar Level</p>
+          <div class="grid grid-cols-4 gap-2">
+            <button type="button" data-sugar="0%" onclick="selectCustomSugar('0%')"
+              class="custom-sugar-btn py-2 rounded-xl border text-xs font-semibold">0%</button>
+            <button type="button" data-sugar="25%" onclick="selectCustomSugar('25%')"
+              class="custom-sugar-btn py-2 rounded-xl border text-xs font-semibold">25%</button>
+            <button type="button" data-sugar="50%" onclick="selectCustomSugar('50%')"
+              class="custom-sugar-btn py-2 rounded-xl border text-xs font-semibold">50%</button>
+            <button type="button" data-sugar="100%" onclick="selectCustomSugar('100%')"
+              class="custom-sugar-btn py-2 rounded-xl border text-xs font-semibold">100%</button>
+          </div>
+        </div>
+
+        <!-- Extra Espresso Shots -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider">Extra Espresso Shots</p>
+            <p class="text-xs text-roast/70 dark:text-latte/70">+$0.90 per shot</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="adjustCustomShots(-1)"
+              class="w-8 h-8 rounded-full border border-caramel font-bold flex items-center justify-center">-</button>
+            <span id="customShotsCount" class="text-sm font-bold w-4 text-center">0</span>
+            <button type="button" onclick="adjustCustomShots(1)"
+              class="w-8 h-8 rounded-full border border-caramel font-bold flex items-center justify-center">+</button>
+          </div>
+        </div>
+
+        <!-- Toppings -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider mb-2">Toppings (+$0.50 each)</p>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-topping="Whipped Cream" onclick="toggleCustomTopping('Whipped Cream')"
+              class="custom-topping-btn px-3.5 py-2 rounded-full border text-xs font-semibold">
+              + Whipped Cream
+            </button>
+            <button type="button" data-topping="Caramel Drizzle" onclick="toggleCustomTopping('Caramel Drizzle')"
+              class="custom-topping-btn px-3.5 py-2 rounded-full border text-xs font-semibold">
+              + Caramel Drizzle
+            </button>
+            <button type="button" data-topping="Cocoa Powder" onclick="toggleCustomTopping('Cocoa Powder')"
+              class="custom-topping-btn px-3.5 py-2 rounded-full border text-xs font-semibold">
+              + Cocoa Powder
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-latte dark:border-roast flex items-center justify-between gap-4">
+        <div>
+          <span class="text-xs block opacity-75">Total Price</span>
+          <span id="customCalculatedPrice" class="text-2xl font-bold text-caramel">$5.50</span>
+        </div>
+        <button type="button" onclick="confirmCustomizedDrink()"
+          class="px-7 py-3.5 rounded-full bg-roast hover:bg-espresso text-cream font-bold text-sm shadow-lg transition-colors">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       14. SLIDE-OVER SMART ONLINE ORDERING BAG DRAWER
+  ======================================================================= -->
+  <div id="cartDrawer" class="hidden fixed inset-0 z-50 justify-end bg-black/65 backdrop-blur-sm">
+    <div class="w-full max-w-md h-full bg-cream dark:bg-cocoaDark text-espresso dark:text-cream border-l border-latte dark:border-roast flex flex-col shadow-2xl">
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-latte dark:border-roast flex items-center justify-between">
+        <h3 class="font-serifDisplay text-2xl font-bold">🛍️ Your Order Bag</h3>
+        <button type="button" onclick="closeCartDrawer()" aria-label="Close bag"
+          class="p-2 rounded-full hover:bg-caramel/20 font-bold">
+          ✕
+        </button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-5">
+        <!-- Dine-In vs Takeaway Toggle -->
+        <div class="grid grid-cols-2 gap-2 p-1 rounded-full bg-latte dark:bg-espresso border border-caramel/30">
+          <button id="modeDineInBtn" type="button" onclick="setOrderMode('Dine-In')"
+            class="py-2 rounded-full text-xs font-bold transition-all">
+            🍽️ Dine-In
+          </button>
+          <button id="modeTakeawayBtn" type="button" onclick="setOrderMode('Takeaway')"
+            class="py-2 rounded-full text-xs font-bold transition-all">
+            🥡 Takeaway
+          </button>
+        </div>
+
+        <!-- Cart Items Container -->
+        <div id="cartItemsContainer" class="space-y-3">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+
+        <!-- Promo Code Box -->
+        <div id="cartPromoSection" class="hidden space-y-2">
+          <label for="cartPromoInput" class="text-xs font-bold uppercase tracking-wider block">
+            Promo Code
+          </label>
+          <div class="flex gap-2">
+            <input id="cartPromoInput" type="text" placeholder="BLISS20 or WELCOME15"
+              class="flex-1 px-3.5 py-2 rounded-xl bg-white dark:bg-espresso border border-latte dark:border-roast text-xs uppercase" />
+            <button type="button" onclick="applyCartPromo()"
+              class="px-4 py-2 rounded-xl bg-caramel text-espresso text-xs font-bold">
+              Apply
+            </button>
+          </div>
+          <p id="cartPromoStatus" class="text-xs text-caramel font-medium"></p>
+        </div>
+
+        <!-- Bill Breakdown & Customer Checkout Form -->
+        <form id="checkoutForm" onsubmit="handleOrderSubmit(event)" class="hidden space-y-4 pt-2" novalidate>
+          <div id="billSummaryBox" class="p-4 rounded-2xl bg-latte/75 dark:bg-espresso border border-caramel/30 space-y-1.5 text-xs">
+            <!-- Populated dynamically by JavaScript -->
+          </div>
+
+          <div class="space-y-2.5">
+            <p class="text-xs font-bold uppercase tracking-wider">Customer Details</p>
+            <div id="checkoutError" class="hidden text-xs text-rose-500 font-medium"></div>
+            <input id="custName" type="text" placeholder="Your Full Name *"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-espresso border border-latte dark:border-roast text-xs focus:outline-none focus:ring-2 focus:ring-caramel" />
+            <input id="custPhone" type="tel" placeholder="Phone Number *"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-espresso border border-latte dark:border-roast text-xs focus:outline-none focus:ring-2 focus:ring-caramel" />
+            <input id="custNote" type="text" placeholder="Special instructions (optional)"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-espresso border border-latte dark:border-roast text-xs focus:outline-none focus:ring-2 focus:ring-caramel" />
+          </div>
+
+          <button type="submit"
+            class="w-full py-3.5 rounded-full bg-roast hover:bg-espresso text-cream font-bold text-sm shadow-lg transition-colors">
+            Place Order & Track Live
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       15. APPLICATION JAVASCRIPT LOGIC
+  ======================================================================= -->
+  <script>
+    // ----------------------------------------------------------------------
+    // DATA CATALOG
+    // ----------------------------------------------------------------------
+    const MENU_ITEMS = [
+      // Hot Coffee
+      {
+        id: 'caramel-macchiato',
+        name: 'Caramel Macchiato',
+        category: 'Hot Coffee',
+        price: 5.50,
+        rating: 4.9,
+        isVeg: true,
+        isDrink: true,
+        badge: 'Best Seller',
+        tasteTags: ['sweet', 'creamy', 'hot'],
+        description: 'Rich espresso layered into velvety steamed milk and finished with buttery caramel drizzle.',
+        image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'hazelnut-cappuccino',
+        name: 'Hazelnut Cappuccino',
+        category: 'Hot Coffee',
+        price: 5.25,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: true,
+        badge: 'Limited Edition',
+        tasteTags: ['creamy', 'sweet', 'hot'],
+        description: 'Double shot espresso crowned with thick micro-foam and roasted hazelnut aroma.',
+        image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'classic-espresso-americano',
+        name: 'Velvet Espresso Americano',
+        category: 'Hot Coffee',
+        price: 4.00,
+        rating: 4.7,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['strong', 'hot'],
+        description: 'Bold dark-roast double espresso lengthened with hot filtered water for a clean, intense cup.',
+        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80'
+      },
+
+      // Cold Coffee
+      {
+        id: 'chocolate-frappe',
+        name: 'Chocolate Frappe',
+        category: 'Cold Coffee',
+        price: 6.25,
+        rating: 4.9,
+        isVeg: true,
+        isDrink: true,
+        badge: "Chef's Special",
+        tasteTags: ['sweet', 'creamy', 'iced'],
+        description: 'Chilled espresso blended with dark Belgian cocoa, ice, whipped cream, and chocolate curls.',
+        image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'cold-brew-reserve',
+        name: 'Slow-Steeped Cold Brew',
+        category: 'Cold Coffee',
+        price: 4.95,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['strong', 'refreshing', 'iced'],
+        description: 'Steeped 18 hours for naturally sweet cacao notes, smooth body, and crisp refreshment over ice.',
+        image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'iced-vanilla-latte',
+        name: 'Iced Vanilla Bean Latte',
+        category: 'Cold Coffee',
+        price: 5.40,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['sweet', 'creamy', 'refreshing', 'iced'],
+        description: 'Smooth espresso poured over chilled milk, real vanilla bean syrup, and crystal ice.',
+        image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80'
+      },
+
+      // Milkshakes
+      {
+        id: 'salted-caramel-shake',
+        name: 'Caramel Crunch Milkshake',
+        category: 'Milkshakes',
+        price: 6.50,
+        rating: 4.9,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['sweet', 'creamy', 'iced'],
+        description: 'Thick vanilla bean ice cream blended with golden caramel sauce and whipped cream.',
+        image: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'mocha-fudge-shake',
+        name: 'Mocha Fudge Milkshake',
+        category: 'Milkshakes',
+        price: 6.75,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['sweet', 'strong', 'creamy', 'iced'],
+        description: 'Decadent chocolate fudge and espresso gelato spun into a rich, velvety shake.',
+        image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80'
+      },
+
+      // Fresh Juices
+      {
+        id: 'fresh-orange-juice',
+        name: 'Fresh Squeezed Valencia Juice',
+        category: 'Fresh Juices',
+        price: 4.75,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['refreshing', 'sweet', 'iced'],
+        description: 'Bright, vitamin-rich freshly pressed oranges served chilled with a crisp citrus aroma.',
+        image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'berry-citrus-cooler',
+        name: 'Ruby Berry & Citrus Cooler',
+        category: 'Fresh Juices',
+        price: 5.15,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: true,
+        badge: null,
+        tasteTags: ['refreshing', 'iced'],
+        description: 'Refreshing blend of ripe berries, zesty citrus, and chilled botanical infusion.',
+        image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80'
+      },
+
+      // Cakes and Desserts
+      {
+        id: 'strawberry-cheesecake',
+        name: 'Strawberry Cheesecake',
+        category: 'Cakes and Desserts',
+        price: 6.50,
+        rating: 4.9,
+        isVeg: true,
+        isDrink: false,
+        badge: 'Best Seller',
+        tasteTags: ['sweet', 'creamy'],
+        description: 'Creamy baked vanilla cheesecake on a crisp biscuit base topped with glossy strawberries.',
+        image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'blueberry-muffin',
+        name: 'Blueberry Muffin',
+        category: 'Cakes and Desserts',
+        price: 4.25,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: false,
+        badge: "Chef's Special",
+        tasteTags: ['sweet'],
+        description: 'Tender bakery muffin packed with juicy blueberries and a golden cinnamon-sugar crumb.',
+        image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'classic-tiramisu',
+        name: 'Espresso Tiramisu Slice',
+        category: 'Cakes and Desserts',
+        price: 6.75,
+        rating: 4.9,
+        isVeg: true,
+        isDrink: false,
+        badge: null,
+        tasteTags: ['creamy', 'sweet'],
+        description: 'Espresso-soaked sponge layered with whipped mascarpone cream and dusted with cocoa.',
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=900&q=80'
+      },
+
+      // Sandwiches and Snacks
+      {
+        id: 'avocado-sourdough-sandwich',
+        name: 'Avocado & Herb Sourdough Toast',
+        category: 'Sandwiches and Snacks',
+        price: 8.25,
+        rating: 4.8,
+        isVeg: true,
+        isDrink: false,
+        badge: null,
+        tasteTags: [],
+        description: 'Toasted artisan sourdough topped with smashed avocado, cherry tomatoes, and sea salt.',
+        image: 'https://images.unsplash.com/photo-1525351484163-7529414342d8?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'grilled-pesto-panini',
+        name: 'Roasted Chicken Pesto Panini',
+        category: 'Sandwiches and Snacks',
+        price: 9.25,
+        rating: 4.8,
+        isVeg: false,
+        isDrink: false,
+        badge: null,
+        tasteTags: [],
+        description: 'Golden pressed panini with tender herb chicken, melted cheese, and basil pesto.',
+        image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'butter-croissant',
+        name: 'Flaky Butter Croissant',
+        category: 'Sandwiches and Snacks',
+        price: 3.95,
+        rating: 4.9,
+        isVeg: true,
+        isDrink: false,
+        badge: null,
+        tasteTags: [],
+        description: 'Crisp, airy golden layers baked fresh every morning for a classic café pairing.',
+        image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80'
+      }
+    ];
+
+    const SPECIAL_IDS = [
+      'caramel-macchiato',
+      'chocolate-frappe',
+      'strawberry-cheesecake',
+      'hazelnut-cappuccino',
+      'blueberry-muffin'
+    ];
+
+    const CATEGORIES = [
+      'All',
+      'Hot Coffee',
+      'Cold Coffee',
+      'Milkshakes',
+      'Fresh Juices',
+      'Cakes and Desserts',
+      'Sandwiches and Snacks'
+    ];
+
+    const INITIAL_REVIEWS = [
+      {
+        name: 'Maya Patel',
+        rating: 5,
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
+        comment: 'The Caramel Macchiato and Strawberry Cheesecake are unforgettable. Such a warm, inviting café!'
+      },
+      {
+        name: 'Daniel Rivera',
+        rating: 5,
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+        comment: 'Love the Hazelnut Cappuccino with oat milk and the relaxing background music while I work.'
+      },
+      {
+        name: 'Chloe Bennett',
+        rating: 5,
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80',
+        comment: 'Fresh ingredients, super friendly baristas, and the Chocolate Frappe is pure bliss.'
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: 'Which coffee roast typically highlights bright floral and fruity origin notes best?',
+        options: ['Light Roast', 'Dark French Roast', 'Charcoal Roast', 'Instant Roast'],
+        answer: 0
+      },
+      {
+        q: 'What water temperature range is ideal for balanced coffee extraction?',
+        options: ['140°F – 150°F', '195°F – 205°F', '212°F Rolling Boil', '160°F – 168°F'],
+        answer: 1
+      },
+      {
+        q: 'What does the Italian word "Macchiato" mean in espresso craft?',
+        options: ['Triple Shot', 'Extra Ice', 'Stained / Marked', 'Sweet Cream'],
+        answer: 2
+      }
+    ];
+
+    const REWARDS_LIST = [
+      {
+        id: 'rew-3',
+        title: '$3 Off Your Order',
+        points: 100,
+        discount: 3.00,
+        desc: 'Apply $3 instant savings to your order bag.'
+      },
+      {
+        id: 'rew-free-drink',
+        title: 'Free Coffee Voucher ($5.50 Off)',
+        points: 200,
+        discount: 5.50,
+        desc: 'Enjoy $5.50 off any handcrafted coffee or drink.'
+      },
+      {
+        id: 'rew-10',
+        title: '$10 Café Treat',
+        points: 350,
+        discount: 10.00,
+        desc: 'Save $10 on coffee, cakes, and sandwiches.'
+      }
+    ];
+
+    const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80';
+
+    // ----------------------------------------------------------------------
+    // PERSISTENT APP STATE
+    // ----------------------------------------------------------------------
+    let cart = loadJSON('brewBliss_cart_v1', []);
+    let loyaltyPoints = Number(loadJSON('brewBliss_points_v1', 150));
+    let reviews = loadJSON('brewBliss_reviews_v1', INITIAL_REVIEWS);
+    let activeOrder = loadJSON('brewBliss_order_v1', null);
+
+    let selectedCategory = 'All';
+    let vegOnly = false;
+    let orderMode = 'Dine-In';
+    let appliedPromo = null; // { code, percent }
+    let activeRewardDiscount = 0;
+
+    // AI & Quiz state
+    let aiFlavor = 'sweet';
+    let aiTemp = 'hot';
+    let quizIdx = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+    let quizDone = false;
+    let quizPointsAwarded = false;
+
+    // Reviews slider state
+    let currentReviewIndex = 0;
+    let reviewSliderTimer = null;
+
+    // Customization modal state
+    let currentCustomItem = null;
+    let customState = {
+      size: 'Regular',
+      milk: 'Whole Milk',
+      sugar: '50%',
+      shots: 0,
+      toppings: []
+    };
+
+    function loadJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw !== null ? JSON.parse(raw) : fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function saveJSON(key, val) {
+      try {
+        localStorage.setItem(key, JSON.stringify(val));
+      } catch {
+        // ignore storage errors
+      }
+    }
+
+    // ----------------------------------------------------------------------
+    // TOAST HELPER
+    // ----------------------------------------------------------------------
+    let toastTimeout = null;
+    function showToast(message) {
+      const banner = document.getElementById('toastBanner');
+      const textEl = document.getElementById('toastText');
+      textEl.textContent = message;
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        banner.classList.add('hidden');
+        banner.classList.remove('flex');
+      }, 3200);
+    }
+
+    // ----------------------------------------------------------------------
+    // 1. DARK / LIGHT COFFEE THEME TOGGLE
+    // ----------------------------------------------------------------------
+    function applySavedTheme() {
+      const isDark = Boolean(loadJSON('brewBliss_dark_v1', false));
+      document.documentElement.classList.toggle('dark', isDark);
+      document.getElementById('themeBtnIcon').textContent = isDark ? '☀️' : '🌙';
+    }
+
+    function toggleThemeMode() {
+      const isDark = !document.documentElement.classList.contains('dark');
+      document.documentElement.classList.toggle('dark', isDark);
+      saveJSON('brewBliss_dark_v1', isDark);
+      document.getElementById('themeBtnIcon').textContent = isDark ? '☀️' : '🌙';
+      showToast(isDark ? 'Switched to Dark Coffee Mode' : 'Switched to Light Cream Mode');
+    }
+
+    // ----------------------------------------------------------------------
+    // MOBILE NAVIGATION
+    // ----------------------------------------------------------------------
+    function toggleMobileMenu() {
+      document.getElementById('mobileNavMenu').classList.toggle('hidden');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobileNavMenu').classList.add('hidden');
+    }
+
+    // ----------------------------------------------------------------------
+    // 2. LIVE OPEN NOW / CLOSED NOW INDICATOR
+    // ----------------------------------------------------------------------
+    function updateOpeningHoursStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0 = Sun, 6 = Sat
+      const decimalHour = now.getHours() + now.getMinutes() / 60;
+      const isWeekend = day === 0 || day === 6;
+
+      const openAt = isWeekend ? 9 : 8;
+      const closeAt = isWeekend ? 23 : 22;
+      const isOpen = decimalHour >= openAt && decimalHour < closeAt;
+
+      const dot = document.getElementById('heroOpenDot');
+      const heroText = document.getElementById('heroOpenText');
+      const pill = document.getElementById('contactOpenStatusPill');
+
+      if (isOpen) {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping';
+        heroText.textContent = isWeekend
+          ? 'Open Now • Weekend Hours: 9:00 AM – 11:00 PM'
+          : 'Open Now • Weekday Hours: 8:00 AM – 10:00 PM';
+        pill.textContent = 'Open Now';
+        pill.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400';
+      } else {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
+        heroText.textContent = isWeekend
+          ? 'Closed Now • Opens Tomorrow at 8:00 AM'
+          : 'Closed Now • Opens Today / Next at 8:00 AM';
+        pill.textContent = 'Closed Now';
+        pill.className = 'px-3 py-1 rounded-full text-xs font-bold bg-rose-500/15 text-rose-500';
+      }
+    }
+
+    // ----------------------------------------------------------------------
+    // 5 & 6. SPECIAL ITEMS & INTERACTIVE MENU RENDERING
+    // ----------------------------------------------------------------------
+    function renderCategoryTabs() {
+      const container = document.getElementById('categoryTabs');
+      container.innerHTML = CATEGORIES.map((cat) => {
+        const active = cat === selectedCategory;
+        return `
+          <button type="button" onclick="selectCategory('${cat.replace(/'/g, "\\'")}')"
+            class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+              active
+                ? 'bg-roast text-cream shadow-md ring-2 ring-caramel'
+                : 'bg-white dark:bg-espresso text-roast dark:text-latte border border-latte dark:border-roast hover:border-caramel'
+            }">
+            ${cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(cat) {
+      selectedCategory = cat;
+      renderCategoryTabs();
+      renderMenu();
+    }
+
+    function toggleVegFilter() {
+      vegOnly = !vegOnly;
+      const btn = document.getElementById('vegFilterBtn');
+      if (vegOnly) {
+        btn.classList.add('bg-emerald-700', 'text-white', 'border-emerald-600');
+        btn.classList.remove('bg-white', 'dark:bg-espresso');
+      } else {
+        btn.classList.remove('bg-emerald-700', 'text-white', 'border-emerald-600');
+        btn.classList.add('bg-white', 'dark:bg-espresso');
+      }
+      renderMenu();
+    }
+
+    function clearMenuSearch() {
+      document.getElementById('menuSearchInput').value = '';
+      renderMenu();
+    }
+
+    function renderSpecials() {
+      const grid = document.getElementById('specialsGrid');
+      const specials = SPECIAL_IDS.map((id) => MENU_ITEMS.find((i) => i.id === id)).filter(Boolean);
+
+      grid.innerHTML = specials.map((item) => {
+        const badgeClass =
+          item.badge === 'Best Seller'
+            ? 'bg-caramel text-espresso'
+            : item.badge === "Chef's Special"
+            ? 'bg-roast text-cream border border-caramel/40'
+            : 'bg-amber-950 text-amber-200 border border-caramel';
+
+        return `
+          <div class="group rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+            <div class="relative h-48 overflow-hidden">
+              <img src="${item.image}" alt="${item.name}" loading="lazy"
+                onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+              ${
+                item.badge
+                  ? `<span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow ${badgeClass}">${item.badge}</span>`
+                  : ''
+              }
+              <span class="absolute bottom-3 right-3 px-2.5 py-0.5 rounded-full bg-espresso/85 text-cream text-xs font-bold">
+                ★ ${item.rating}
+              </span>
+            </div>
+
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-wider text-caramel">${item.category}</p>
+                <h3 class="font-serifDisplay text-xl font-bold mt-0.5">${item.name}</h3>
+                <p class="text-xs text-roast/75 dark:text-latte/75 mt-1.5 line-clamp-2">${item.description}</p>
+              </div>
+
+              <div class="pt-4 mt-4 border-t border-latte dark:border-roast flex items-center justify-between gap-2">
+                <span class="text-base font-bold text-caramel">$${item.price.toFixed(2)}</span>
+                <div class="flex items-center gap-1.5">
+                  ${
+                    item.isDrink
+                      ? `<button type="button" onclick="openCustomizeModal('${item.id}')" title="Customize"
+                          class="px-2.5 py-2 rounded-full border border-caramel/50 text-xs font-bold hover:bg-caramel/20">⚙️</button>`
+                      : ''
+                  }
+                  <button type="button" onclick="addItemToCart('${item.id}')"
+                    class="px-3.5 py-2 rounded-full bg-roast hover:bg-caramel text-cream hover:text-espresso text-xs font-bold transition-colors">
+                    + Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById('menuGrid');
+      const query = document.getElementById('menuSearchInput').value.trim().toLowerCase();
+
+      const filtered = MENU_ITEMS.filter((item) => {
+        const matchesCat = selectedCategory === 'All' || item.category === selectedCategory;
+        const matchesVeg = !vegOnly || item.isVeg;
+        const matchesSearch =
+          !query ||
+          item.name.toLowerCase().includes(query) ||
+          item.description.toLowerCase().includes(query) ||
+          item.category.toLowerCase().includes(query);
+        return matchesCat && matchesVeg && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-14 rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast">
+            <p class="text-3xl mb-2">☕</p>
+            <h3 class="font-serifDisplay text-2xl font-bold">No items match your filter</h3>
+            <p class="text-xs sm:text-sm text-roast/75 dark:text-latte/75 mt-1">
+              Try another search word or switch back to "All".
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((item) => {
+        const vegBadge = item.isVeg
+          ? `<span class="px-2.5 py-1 rounded-full bg-white/95 text-espresso text-[11px] font-bold inline-flex items-center gap-1.5 shadow">
+               <span class="w-3 h-3 border-2 border-emerald-600 rounded-[2px] flex items-center justify-center">
+                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+               </span>Veg
+             </span>`
+          : `<span class="px-2.5 py-1 rounded-full bg-white/95 text-espresso text-[11px] font-bold inline-flex items-center gap-1.5 shadow">
+               <span class="w-3 h-3 border-2 border-rose-600 rounded-[2px] flex items-center justify-center">
+                 <span class="w-1.5 h-1.5 rounded-full bg-rose-600"></span>
+               </span>Non-Veg
+             </span>`;
+
+        return `
+          <div class="group rounded-3xl bg-white dark:bg-espresso border border-latte dark:border-roast overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div class="relative h-56 overflow-hidden">
+              <img src="${item.image}" alt="${item.name}" loading="lazy"
+                onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between">
+                ${
+                  item.badge
+                    ? `<span class="px-3 py-1 rounded-full bg-espresso/90 text-caramel border border-caramel/40 text-xs font-bold">${item.badge}</span>`
+                    : '<span></span>'
+                }
+                ${vegBadge}
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="font-bold uppercase tracking-wider text-caramel">${item.category}</span>
+                  <span class="font-bold">★ ${item.rating}</span>
+                </div>
+                <h3 class="font-serifDisplay text-2xl font-bold">${item.name}</h3>
+                <p class="text-sm text-roast/75 dark:text-latte/75 mt-2 leading-relaxed">${item.description}</p>
+              </div>
+
+              <div class="pt-5 mt-5 border-t border-latte dark:border-roast flex items-center justify-between gap-2">
+                <span class="text-xl font-bold text-caramel">$${item.price.toFixed(2)}</span>
+                <div class="flex items-center gap-2">
+                  ${
+                    item.isDrink
+                      ? `<button type="button" onclick="openCustomizeModal('${item.id}')"
+                          class="px-3.5 py-2.5 rounded-full border border-caramel/50 text-xs font-bold hover:bg-caramel/15 transition-colors">
+                          Customize
+                        </button>`
+                      : ''
+                  }
+                  <button type="button" onclick="addItemToCart('${item.id}')"
+                    class="px-4 py-2.5 rounded-full bg-roast hover:bg-caramel text-cream hover:text-espresso text-xs font-bold shadow transition-all">
+                    + Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ----------------------------------------------------------------------
+    // 8B. COFFEE CUSTOMIZATION MODAL
+    // ----------------------------------------------------------------------
+    function openCustomizeModal(itemId) {
+      const item = MENU_ITEMS.find((m) => m.id === itemId);
+      if (!item) return;
+
+      currentCustomItem = item;
+      customState = {
+        size: 'Regular',
+        milk: 'Whole Milk',
+        sugar: '50%',
+        shots: 0,
+        toppings: []
+      };
+
+      document.getElementById('customModalTitle').textContent = item.name;
+      syncCustomizeUI();
+
+      const modal = document.getElementById('customizeModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCustomizeModal() {
+      const modal = document.getElementById('customizeModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      currentCustomItem = null;
+    }
+
+    function getCustomizedUnitPrice() {
+      if (!currentCustomItem) return 0;
+      let price = currentCustomItem.price;
+      if (customState.size === 'Small') price -= 0.40;
+      if (customState.size === 'Large') price += 0.85;
+      if (customState.milk !== 'Whole Milk') price += 0.65;
+      price += customState.shots * 0.90;
+      price += customState.toppings.length * 0.50;
+      return Math.max(1.50, Number(price.toFixed(2)));
+    }
+
+    function syncCustomizeUI() {
+      document.querySelectorAll('.custom-size-btn').forEach((btn) => {
+        const active = btn.dataset.size === customState.size;
+        btn.className = `custom-size-btn p-3 rounded-xl border text-center text-xs font-bold transition-all ${
+          active
+            ? 'bg-roast text-cream border-caramel'
+            : 'bg-white dark:bg-cocoaDark border-latte dark:border-roast'
+        }`;
+      });
+
+      document.querySelectorAll('.custom-milk-btn').forEach((btn) => {
+        const active = btn.dataset.milk === customState.milk;
+        btn.className = `custom-milk-btn py-2.5 px-2 rounded-xl border text-xs font-semibold transition-all ${
+          active
+            ? 'bg-roast text-cream border-caramel'
+            : 'bg-white dark:bg-cocoaDark border-latte dark:border-roast'
+        }`;
+      });
+
+      document.querySelectorAll('.custom-sugar-btn').forEach((btn) => {
+        const active = btn.dataset.sugar === customState.sugar;
+        btn.className = `custom-sugar-btn py-2 rounded-xl border text-xs font-semibold transition-all ${
+          active
+            ? 'bg-roast text-cream border-caramel'
+            : 'bg-white dark:bg-cocoaDark border-latte dark:border-roast'
+        }`;
+      });
+
+      document.getElementById('customShotsCount').textContent = customState.shots;
+
+      document.querySelectorAll('.custom-topping-btn').forEach((btn) => {
+        const top = btn.dataset.topping;
+        const active = customState.toppings.includes(top);
+        btn.textContent = `${active ? '✓ ' : '+ '}${top}`;
+        btn.className = `custom-topping-btn px-3.5 py-2 rounded-full border text-xs font-semibold transition-all ${
+          active
+            ? 'bg-caramel text-espresso border-caramel'
+            : 'bg-white dark:bg-cocoaDark border-latte dark:border-roast'
+        }`;
+      });
+
+      document.getElementById('customCalculatedPrice').textContent =
+        `$${getCustomizedUnitPrice().toFixed(2)}`;
+    }
+
+    function selectCustomSize(sz) {
+      customState.size = sz;
+      syncCustomizeUI();
+    }
+    function selectCustomMilk(m) {
+      customState.milk = m;
+      syncCustomizeUI();
+    }
+    function selectCustomSugar(s) {
+      customState.sugar = s;
+      syncCustomizeUI();
+    }
+    function adjustCustomShots(delta) {
+      customState.shots = Math.max(0, Math.min(3, customState.shots + delta));
+      syncCustomizeUI();
+    }
+    function toggleCustomTopping(top) {
+      if (customState.toppings.includes(top)) {
+        customState.toppings = customState.toppings.filter((t) => t !== top);
+      } else {
+        customState.toppings.push(top);
+      }
+      syncCustomizeUI();
+    }
+
+    function confirmCustomizedDrink() {
+      if (!currentCustomItem) return;
+      const unitPrice = getCustomizedUnitPrice();
+      const details = `${customState.size} • ${customState.milk} • ${customState.sugar} sugar${
+        customState.shots > 0 ? ` • +${customState.shots} shot` : ''
+      }${customState.toppings.length > 0 ? ` • ${customState.toppings.join(', ')}` : ''}`;
+
+      addItemToCart(currentCustomItem.id, {
+        unitPrice,
+        details
+      });
+      closeCustomizeModal();
+    }
+
+    // ----------------------------------------------------------------------
+    // 6. SMART ONLINE ORDERING CART & CHECKOUT
+    // ----------------------------------------------------------------------
+    function openCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+      renderCartDrawer();
+    }
+
+    function closeCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
+    }
+
+    function setOrderMode(mode) {
+      orderMode = mode;
+      renderCartDrawer();
+    }
+
+    function addItemToCart(itemId, customObj = null) {
+      const item = MENU_ITEMS.find((m) => m.id === itemId);
+      if (!item) return;
+
+      const unitPrice = customObj ? customObj.unitPrice : item.price;
+      const details = customObj ? customObj.details : 'Classic Recipe';
+      const cartKey = `${item.id}::${details}`;
+
+      const existing = cart.find((c) => c.cartKey === cartKey);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          cartKey,
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          unitPrice,
+          details,
+          quantity: 1
+        });
+      }
+
+      saveJSON('brewBliss_cart_v1', cart);
+      updateCartBadge();
+      showToast(`Added ${item.name} to your bag`);
+    }
+
+    function changeCartQty(cartKey, delta) {
+      cart = cart
+        .map((c) => (c.cartKey === cartKey ? { ...c, quantity: c.quantity + delta } : c))
+        .filter((c) => c.quantity > 0);
+      saveJSON('brewBliss_cart_v1', cart);
+      updateCartBadge();
+      renderCartDrawer();
+    }
+
+    function updateCartBadge() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCountBadge').textContent = count;
+    }
+
+    function applyCartPromo() {
+      const code = document.getElementById('cartPromoInput').value.trim().toUpperCase();
+      const statusEl = document.getElementById('cartPromoStatus');
+      if (code === 'BLISS20') {
+        appliedPromo = { code: 'BLISS20', percent: 20 };
+        statusEl.textContent = '✓ 20% Daily Special applied!';
+      } else if (code === 'WELCOME15') {
+        appliedPromo = { code: 'WELCOME15', percent: 15 };
+        statusEl.textContent = '✓ 15% Welcome discount applied!';
+      } else {
+        appliedPromo = null;
+        statusEl.textContent = 'Try code BLISS20 or WELCOME15.';
+      }
+      renderCartDrawer();
+    }
+
+    function renderCartDrawer() {
+      const dineBtn = document.getElementById('modeDineInBtn');
+      const takeBtn = document.getElementById('modeTakeawayBtn');
+
+      dineBtn.className = `py-2 rounded-full text-xs font-bold transition-all ${
+        orderMode === 'Dine-In' ? 'bg-roast text-cream shadow' : 'opacity-75'
+      }`;
+      takeBtn.className = `py-2 rounded-full text-xs font-bold transition-all ${
+        orderMode === 'Takeaway' ? 'bg-roast text-cream shadow' : 'opacity-75'
+      }`;
+
+      const listEl = document.getElementById('cartItemsContainer');
+      const promoSec = document.getElementById('cartPromoSection');
+      const checkoutForm = document.getElementById('checkoutForm');
+
+      if (cart.length === 0) {
+        listEl.innerHTML = `
+          <div class="text-center py-12 space-y-2">
+            <p class="text-4xl">☕</p>
+            <p class="font-serifDisplay text-xl font-bold">Your bag is empty</p>
+            <p class="text-xs text-roast/70 dark:text-latte/70">Add coffee, milkshakes, cakes, or sandwiches from the menu.</p>
+          </div>
+        `;
+        promoSec.classList.add('hidden');
+        checkoutForm.classList.add('hidden');
+        return;
+      }
+
+      promoSec.classList.remove('hidden');
+      checkoutForm.classList.remove('hidden');
+
+      listEl.innerHTML = cart.map((item) => `
+        <div class="p-3.5 rounded-2xl bg-white dark:bg-espresso border border-latte dark:border-roast flex items-center gap-3">
+          <img src="${item.image}" alt="${item.name}"
+            onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
+            class="w-16 h-16 rounded-xl object-cover shrink-0" />
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-sm truncate">${item.name}</p>
+            <p class="text-[11px] text-roast/70 dark:text-latte/70 truncate">${item.details}</p>
+            <p class="text-xs font-bold text-caramel mt-1">$${(item.unitPrice * item.quantity).toFixed(2)}</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="changeCartQty('${item.cartKey.replace(/'/g, "\\'")}', -1)"
+              class="w-7 h-7 rounded-full border border-caramel/50 text-xs font-bold">-</button>
+            <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+            <button type="button" onclick="changeCartQty('${item.cartKey.replace(/'/g, "\\'")}', 1)"
+              class="w-7 h-7 rounded-full border border-caramel/50 text-xs font-bold">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((s, i) => s + i.unitPrice * i.quantity, 0);
+      const promoDisc = appliedPromo ? Number(((subtotal * appliedPromo.percent) / 100).toFixed(2)) : 0;
+      const rewardDisc = Math.min(activeRewardDiscount, Math.max(0, subtotal - promoDisc));
+      const taxable = Math.max(0, subtotal - promoDisc - rewardDisc);
+      const tax = Number((taxable * 0.08).toFixed(2));
+      const total = Number((taxable + tax).toFixed(2));
+
+      document.getElementById('billSummaryBox').innerHTML = `
+        <div class="flex justify-between"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+        ${promoDisc > 0 ? `<div class="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold"><span>Promo (${appliedPromo.code})</span><span>-$${promoDisc.toFixed(2)}</span></div>` : ''}
+        ${rewardDisc > 0 ? `<div class="flex justify-between text-caramel font-semibold"><span>Loyalty Reward</span><span>-$${rewardDisc.toFixed(2)}</span></div>` : ''}
+        <div class="flex justify-between"><span>Tax (8%)</span><span>$${tax.toFixed(2)}</span></div>
+        <div class="flex justify-between text-sm font-extrabold pt-2 border-t border-caramel/25">
+          <span>Total</span><span class="text-caramel">$${total.toFixed(2)}</span>
+        </div>
+      `;
+    }
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const note = document.getElementById('custNote').value.trim();
+      const errEl = document.getElementById('checkoutError');
+
+      if (!name || !phone) {
+        errEl.textContent = 'Please enter your name and phone number.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      errEl.classList.add('hidden');
+      const subtotal = cart.reduce((s, i) => s + i.unitPrice * i.quantity, 0);
+      const promoDisc = appliedPromo ? Number(((subtotal * appliedPromo.percent) / 100).toFixed(2)) : 0;
+      const rewardDisc = Math.min(activeRewardDiscount, Math.max(0, subtotal - promoDisc));
+      const taxable = Math.max(0, subtotal - promoDisc - rewardDisc);
+      const total = Number((taxable + taxable * 0.08).toFixed(2));
+      const earnedPts = Math.round(total * 10);
+
+      activeOrder = {
+        id: 'BB-' + Math.floor(1000 + Math.random() * 9000),
+        name,
+        phone,
+        note,
+        mode: orderMode,
+        total,
+        earnedPts,
+        stageIndex: 0,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      loyaltyPoints += earnedPts;
+      saveJSON('brewBliss_points_v1', loyaltyPoints);
+      saveJSON('brewBliss_order_v1', activeOrder);
+
+      cart = [];
+      appliedPromo = null;
+      activeRewardDiscount = 0;
+      saveJSON('brewBliss_cart_v1', cart);
+
+      updateLoyaltyUI();
+      updateCartBadge();
+      closeCartDrawer();
+      renderOrderTracker();
+      showToast(`Order #${activeOrder.id} received! Earned +${earnedPts} pts.`);
+
+      document.getElementById('orderTrackerSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ----------------------------------------------------------------------
+    // LIVE ORDER TRACKER (RECEIVED -> PREPARING -> READY -> COMPLETED)
+    // ----------------------------------------------------------------------
+    function renderOrderTracker() {
+      const sec = document.getElementById('orderTrackerSection');
+      if (!activeOrder) {
+        sec.classList.add('hidden');
+        return;
+      }
+
+      sec.classList.remove('hidden');
+      document.getElementById('trackerOrderTitle').textContent =
+        `Order #${activeOrder.id} — ${activeOrder.name}`;
+      document.getElementById('trackerOrderMeta').textContent =
+        `${activeOrder.mode} • Placed at ${activeOrder.time} • Total $${activeOrder.total.toFixed(2)}`;
+
+      const advanceBtn = document.getElementById('advanceOrderBtn');
+      advanceBtn.disabled = activeOrder.stageIndex >= 3;
+      advanceBtn.classList.toggle('opacity-40', activeOrder.stageIndex >= 3);
+
+      const stages = [
+        { title: 'Received', subtitle: 'Order sent to café counter' },
+        { title: 'Preparing', subtitle: 'Baristas & kitchen crafting' },
+        { title: 'Ready', subtitle: 'Freshly prepared for pickup' },
+        { title: 'Completed', subtitle: 'Enjoy your Brew Bliss treat!' }
+      ];
+
+      document.getElementById('trackerStepsGrid').innerHTML = stages.map((st, idx) => {
+        const completed = idx <= activeOrder.stageIndex;
+        const current = idx === activeOrder.stageIndex;
+        return `
+          <div class="p-4 rounded-2xl border transition-all ${
+            current
+              ? 'bg-caramel/25 border-caramel scale-[1.02]'
+              : completed
+              ? 'bg-white/10 border-emerald-400/50'
+              : 'bg-black/25 border-white/10 opacity-55'
+          }">
+            <div class="flex items-center justify-between mb-2">
+              <span class="w-7 h-7 rounded-full bg-caramel text-espresso text-xs font-extrabold flex items-center justify-center">
+                ${completed ? '✓' : idx + 1}
+              </span>
+              ${current ? '<span class="text-[10px] font-bold uppercase text-caramel">Active</span>' : ''}
+            </div>
+            <p class="font-bold text-sm">${st.title}</p>
+            <p class="text-xs text-latte/75 mt-0.5">${st.subtitle}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function advanceOrderStage() {
+      if (!activeOrder || activeOrder.stageIndex >= 3) return;
+      activeOrder.stageIndex += 1;
+      saveJSON('brewBliss_order_v1', activeOrder);
+      renderOrderTracker();
+    }
+
+    function dismissActiveOrder() {
+      activeOrder = null;
+      saveJSON('brewBliss_order_v1', null);
+      renderOrderTracker();
+    }
+
+    // ----------------------------------------------------------------------
+    // 8A. AI COFFEE RECOMMENDATION
+    // ----------------------------------------------------------------------
+    function setAiPreference(type, value) {
+      if (type === 'flavor') aiFlavor = value;
+      if (type === 'temp') aiTemp = value;
+      renderAiRecommendation();
+    }
+
+    function renderAiRecommendation() {
+      document.querySelectorAll('.ai-flavor-btn').forEach((btn) => {
+        const active = btn.dataset.flavor === aiFlavor;
+        btn.className = `ai-flavor-btn py-2.5 px-3 rounded-xl border text-xs font-bold transition-all ${
+          active
+            ? 'bg-roast text-cream border-caramel shadow'
+            : 'bg-cream dark:bg-cocoaDark border-latte dark:border-roast'
+        }`;
+      });
+
+      document.querySelectorAll('.ai-temp-btn').forEach((btn) => {
+        const active = btn.dataset.temp === aiTemp;
+        btn.className = `ai-temp-btn py-2.5 px-4 rounded-xl border text-xs font-bold transition-all ${
+          active
+            ? 'bg-roast text-cream border-caramel shadow'
+            : 'bg-cream dark:bg-cocoaDark border-latte dark:border-roast'
+        }`;
+      });
+
+      const drinks = MENU_ITEMS.filter((m) => m.isDrink);
+      const match =
+        drinks.find((d) => d.tasteTags.includes(aiFlavor) && d.tasteTags.includes(aiTemp)) ||
+        drinks.find((d) => d.tasteTags.includes(aiFlavor)) ||
+        drinks[0];
+
+      document.getElementById('aiRecommendationCard').innerHTML = `
+        <img src="${match.image}" alt="${match.name}"
+          onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
+          class="w-24 h-24 rounded-2xl object-cover shrink-0" />
+        <div class="flex-1 text-center sm:text-left">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-caramel">
+            Recommended • $${match.price.toFixed(2)}
+          </span>
+          <h4 class="font-serifDisplay text-xl font-bold">${match.name}</h4>
+          <p class="text-xs text-roast/75 dark:text-latte/75 mt-1 line-clamp-2">${match.description}</p>
+        </div>
+        <div class="flex sm:flex-col gap-2 shrink-0">
+          <button type="button" onclick="addItemToCart('${match.id}')"
+            class="px-4 py-2 rounded-full bg-caramel hover:bg-[#b77c4a] text-espresso text-xs font-bold">
+            + Add
+          </button>
+          <button type="button" onclick="openCustomizeModal('${match.id}')"
+            class="px-4 py-2 rounded-full border border-caramel/50 text-xs font-bold">
+            Customize
+          </button>
+        </div>
+      `;
+    }
+
+    // ----------------------------------------------------------------------
+    // 8E. DAILY COFFEE QUIZ
+    // ----------------------------------------------------------------------
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+
+      if (quizDone) {
+        container.innerHTML = `
+          <div class="text-center py-6 space-y-3">
+            <p class="text-4xl">🏆</p>
+            <h4 class="font-serifDisplay text-2xl font-bold">
+              Quiz Complete: ${quizScore} / ${QUIZ_QUESTIONS.length}
+            </h4>
+            <p class="text-xs sm:text-sm text-roast/75 dark:text-latte/75">
+              You now have <strong class="text-caramel">${loyaltyPoints} Bliss Points</strong>!
+            </p>
+            <button type="button" onclick="restartQuiz()"
+              class="mt-2 px-5 py-2.5 rounded-full bg-roast text-cream text-xs font-bold">
+              Play Again
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const qObj = QUIZ_QUESTIONS[quizIdx];
+      container.innerHTML = `
+        <p class="text-xs text-roast/70 dark:text-latte/70 mb-1.5">
+          Question ${quizIdx + 1} of ${QUIZ_QUESTIONS.length} • Score: ${quizScore}
+        </p>
+        <h4 class="font-serifDisplay text-xl font-bold leading-snug mb-4">${qObj.q}</h4>
+        <div class="space-y-2.5">
+          ${qObj.options.map((opt, idx) => `
+            <button type="button" onclick="answerQuiz(${idx})"
+              class="w-full text-left px-4 py-3 rounded-xl border border-latte dark:border-roast bg-cream dark:bg-cocoaDark hover:border-caramel text-xs sm:text-sm font-semibold transition-all">
+              ${opt}
+            </button>
+          `).join('')}
+        </div>
+        <div id="quizFeedback" class="mt-4"></div>
+      `;
+    }
+
+    function answerQuiz(chosenIdx) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      const qObj = QUIZ_QUESTIONS[quizIdx];
+      const isRight = chosenIdx === qObj.answer;
+      if (isRight) {
+        quizScore += 1;
+        loyaltyPoints += 25;
+        quizPointsAwarded = true;
+        saveJSON('brewBliss_points_v1', loyaltyPoints);
+        updateLoyaltyUI();
+      }
+
+      const nextLabel = quizIdx + 1 < QUIZ_QUESTIONS.length ? 'Next Question →' : 'Finish Quiz';
+      document.getElementById('quizFeedback').innerHTML = `
+        <div class="p-3.5 rounded-xl ${
+          isRight
+            ? 'bg-emerald-500/15 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300'
+            : 'bg-amber-500/15 border border-amber-500/40 text-amber-800 dark:text-amber-300'
+        } text-xs flex items-center justify-between gap-3">
+          <span>
+            ${isRight ? '✓ Correct! +25 Bliss Points earned.' : `Not quite — answer: ${qObj.options[qObj.answer]}.`}
+          </span>
+          <button type="button" onclick="nextQuizStep()"
+            class="px-3.5 py-1.5 rounded-full bg-roast text-cream font-bold shrink-0">
+            ${nextLabel}
+          </button>
+        </div>
+      `;
+    }
+
+    function nextQuizStep() {
+      quizAnswered = false;
+      if (quizIdx + 1 < QUIZ_QUESTIONS.length) {
+        quizIdx += 1;
+      } else {
+        quizDone = true;
+      }
+      renderQuiz();
+    }
+
+    function restartQuiz() {
+      quizIdx = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      quizDone = false;
+      renderQuiz();
+    }
+
+    // ----------------------------------------------------------------------
+    // 8C. COFFEE LOYALTY REWARDS
+    // ----------------------------------------------------------------------
+    function updateLoyaltyUI() {
+      document.getElementById('navLoyaltyPoints').textContent = `${loyaltyPoints} pts`;
+      document.getElementById('loyaltyBalanceLarge').textContent = `${loyaltyPoints} pts`;
+      renderRewards();
+    }
+
+    function renderRewards() {
+      const grid = document.getElementById('rewardsGrid');
+      grid.innerHTML = REWARDS_LIST.map((rew) => {
+        const canRedeem = loyaltyPoints >= rew.points;
+        const alreadyApplied = activeRewardDiscount === rew.discount;
+
+        return `
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/15 flex flex-col justify-between">
+            <div>
+              <span class="px-3 py-1 rounded-full bg-caramel text-espresso text-xs font-extrabold">
+                ${rew.points} Points
+              </span>
+              <h3 class="font-serifDisplay text-2xl font-bold mt-3">${rew.title}</h3>
+              <p class="text-xs text-latte/80 mt-1.5 leading-relaxed">${rew.desc}</p>
+            </div>
+
+            <button type="button" ${!canRedeem || alreadyApplied ? 'disabled' : ''}
+              onclick="redeemReward('${rew.id}')"
+              class="mt-6 w-full py-3 rounded-full text-xs font-bold transition-all ${
+                alreadyApplied
+                  ? 'bg-emerald-600 text-white'
+                  : canRedeem
+                  ? 'bg-caramel hover:bg-[#b77c4a] text-espresso shadow-lg'
+                  : 'bg-white/10 text-white/40 cursor-not-allowed'
+              }">
+              ${
+                alreadyApplied
+                  ? '✓ Applied to Bag'
+                  : canRedeem
+                  ? 'Redeem Reward'
+                  : `Need ${rew.points - loyaltyPoints} more pts`
+              }
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function redeemReward(rewId) {
+      const rew = REWARDS_LIST.find((r) => r.id === rewId);
+      if (!rew || loyaltyPoints < rew.points) return;
+
+      loyaltyPoints -= rew.points;
+      activeRewardDiscount = rew.discount;
+      saveJSON('brewBliss_points_v1', loyaltyPoints);
+      updateLoyaltyUI();
+      showToast(`Redeemed "${rew.title}"! Discount ready in your bag.`);
+    }
+
+    // ----------------------------------------------------------------------
+    // 8D. TABLE RESERVATION
+    // ----------------------------------------------------------------------
+    function setDefaultReservationDate() {
+      const input = document.getElementById('resDate');
+      if (input && !input.value) {
+        input.value = new Date().toISOString().split('T')[0];
+      }
+    }
+
+    function handleReservationSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('resName').value.trim();
+      const guests = document.getElementById('resGuests').value;
+      const date = document.getElementById('resDate').value;
+      const time = document.getElementById('resTime').value;
+      const seating = document.getElementById('resSeating').value;
+      const errEl = document.getElementById('reservationError');
+
+      if (!name || !date || !time) {
+        errEl.textContent = 'Please complete your name, date, and preferred time.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      errEl.classList.add('hidden');
+      document.getElementById('reservationForm').classList.add('hidden');
+      const confBox = document.getElementById('reservationConfirmation');
+      confBox.classList.remove('hidden');
+      document.getElementById('reservationSummaryText').textContent =
+        `${name} • ${guests} on ${date} at ${time} (${seating}).`;
+      showToast('Table reservation confirmed!');
+    }
+
+    function resetReservationForm() {
+      document.getElementById('reservationConfirmation').classList.add('hidden');
+      document.getElementById('reservationForm').classList.remove('hidden');
+      document.getElementById('resName').value = '';
+    }
+
+    // ----------------------------------------------------------------------
+    // 7. CUSTOMER REVIEWS SLIDER & SUBMISSION
+    // ----------------------------------------------------------------------
+    function updateReviewsStats() {
+      const avg =
+        reviews.length > 0
+          ? (reviews.reduce((s, r) => s + Number(r.rating), 0) / reviews.length).toFixed(1)
+          : '4.9';
+      document.getElementById('avgRatingBadge').textContent = `${avg} ★`;
+      document.getElementById('heroAvgRating').textContent = `${avg} ★`;
+      document.getElementById('reviewCountBadge').textContent = reviews.length;
+    }
+
+    function renderActiveReview() {
+      if (reviews.length === 0) return;
+      if (currentReviewIndex >= reviews.length) currentReviewIndex = 0;
+
+      const rev = reviews[currentReviewIndex];
+      const stars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+
+      document.getElementById('activeReviewCard').innerHTML = `
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-3">
+            <img src="${rev.avatar}" alt="${rev.name}"
+              onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
+              class="w-12 h-12 rounded-full object-cover border-2 border-caramel" />
+            <div>
+              <h4 class="font-bold text-sm sm:text-base">${rev.name}</h4>
+              <p class="text-xs text-caramel font-semibold">${stars}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="prevReviewSlide()" aria-label="Previous review"
+              class="w-8 h-8 rounded-full border border-caramel/40 text-xs font-bold hover:bg-caramel/20">‹</button>
+            <button type="button" onclick="nextReviewSlide()" aria-label="Next review"
+              class="w-8 h-8 rounded-full border border-caramel/40 text-xs font-bold hover:bg-caramel/20">›</button>
+          </div>
+        </div>
+
+        <p class="font-serifDisplay italic text-lg sm:text-xl leading-relaxed">
+          &ldquo;${rev.comment}&rdquo;
+        </p>
+      `;
+    }
+
+    function nextReviewSlide() {
+      currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+      renderActiveReview();
+    }
+
+    function prevReviewSlide() {
+      currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+      renderActiveReview();
+    }
+
+    function startReviewSlider() {
+      clearInterval(reviewSliderTimer);
+      reviewSliderTimer = setInterval(nextReviewSlide, 5500);
+    }
+
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reviewerName').value.trim();
+      const rating = Number(document.getElementById('reviewerRating').value);
+      const comment = document.getElementById('reviewerComment').value.trim();
+      const errEl = document.getElementById('reviewError');
+
+      if (!name || !comment) {
+        errEl.textContent = 'Please enter your name and review comment.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      errEl.classList.add('hidden');
+      reviews.unshift({
+        name,
+        rating,
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+        comment
+      });
+
+      saveJSON('brewBliss_reviews_v1', reviews);
+      currentReviewIndex = 0;
+      document.getElementById('reviewerName').value = '';
+      document.getElementById('reviewerComment').value = '';
+
+      updateReviewsStats();
+      renderActiveReview();
+      showToast('Thank you for your review!');
+    }
+
+    // ----------------------------------------------------------------------
+    // 8F. CAFÉ AMBIENT MUSIC PLAYER (WEB AUDIO API)
+    // ----------------------------------------------------------------------
+    let audioCtx = null;
+    let masterGain = null;
+    let musicInterval = null;
+    let isMusicPlaying = false;
+
+    function toggleCafeMusic() {
+      const bar = document.getElementById('musicPlayerBar');
+      const icon = document.getElementById('musicBtnIcon');
+
+      if (isMusicPlaying) {
+        clearInterval(musicInterval);
+        if (audioCtx) {
+          audioCtx.close();
+          audioCtx = null;
+        }
+        isMusicPlaying = false;
+        bar.classList.add('hidden');
+        bar.classList.remove('flex');
+        icon.textContent = '🎵';
+        return;
+      }
+
+      try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new Ctx();
+        masterGain = audioCtx.createGain();
+        const vol = parseFloat(document.getElementById('musicVolumeSlider').value || '0.4');
+        masterGain.gain.setValueAtTime(vol * 0.16, audioCtx.currentTime);
+        masterGain.connect(audioCtx.destination);
+
+        const chords = [
+          [174.61, 220.00, 261.63, 329.63],
+          [164.81, 196.00, 246.94, 293.66],
+          [146.83, 174.61, 220.00, 261.63],
+          [130.81, 164.81, 196.00, 246.94]
+        ];
+        let step = 0;
+
+        const playChord = () => {
+          if (!audioCtx) return;
+          const now = audioCtx.currentTime;
+          const notes = chords[step % chords.length];
+          step += 1;
+
+          notes.forEach((freq) => {
+            const osc = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+
+            g.gain.setValueAtTime(0.0001, now);
+            g.gain.exponentialRampToValueAtTime(0.2, now + 0.7);
+            g.gain.exponentialRampToValueAtTime(0.0001, now + 3.7);
+
+            osc.connect(g);
+            g.connect(masterGain);
+            osc.start(now);
+            osc.stop(now + 3.9);
+          });
+        };
+
+        playChord();
+        musicInterval = setInterval(playChord, 3900);
+        isMusicPlaying = true;
+        bar.classList.remove('hidden');
+        bar.classList.add('flex');
+        icon.textContent = '⏸️';
+        showToast('Playing Brew Bliss Café Lounge Music');
+      } catch {
+        showToast('Unable to start audio in this browser context');
+      }
+    }
+
+    function updateMusicVolume(val) {
+      if (masterGain && audioCtx) {
+        masterGain.gain.setValueAtTime(parseFloat(val) * 0.16, audioCtx.currentTime);
+      }
+    }
+
+    // ----------------------------------------------------------------------
+    // NEWSLETTER & FOOTER LINKS
+    // ----------------------------------------------------------------------
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value.trim();
+      const msgEl = document.getElementById('newsletterMessage');
+      msgEl.classList.remove('hidden');
+
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        msgEl.textContent = 'Please enter a valid email address.';
+        msgEl.className = 'text-xs pl-3 font-medium text-rose-400';
+        return;
+      }
+
+      msgEl.textContent = '✓ Subscribed! Use promo code WELCOME15 for 15% off.';
+      msgEl.className = 'text-xs pl-3 font-medium text-emerald-400';
+      document.getElementById('newsletterEmail').value = '';
+      showToast('Welcome discount code WELCOME15 unlocked!');
+    }
+
+    function renderFooterLinks() {
+      const footerMenu = document.getElementById('footerMenuLinks');
+      footerMenu.innerHTML = CATEGORIES.slice(1).map((cat) => `
+        <li>
+          <a href="#menu" onclick="selectCategory('${cat.replace(/'/g, "\\'")}')" class="hover:text-caramel">
+            ${cat}
+          </a>
+        </li>
+      `).join('');
+
+      document.getElementById('footerYear').textContent = new Date().getFullYear();
+    }
+
+    // ----------------------------------------------------------------------
+    // INITIALIZATION
+    // ----------------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      applySavedTheme();
+      updateOpeningHoursStatus();
+      setInterval(updateOpeningHoursStatus, 60000);
+
+      renderCategoryTabs();
+      renderSpecials();
+      renderMenu();
+      updateCartBadge();
+      updateLoyaltyUI();
+      renderAiRecommendation();
+      renderQuiz();
+      setDefaultReservationDate();
+      updateReviewsStats();
+      renderActiveReview();
+      startReviewSlider();
+      renderOrderTracker();
+      renderFooterLinks();
+    });
+  </script>
+</body>
+</html>
